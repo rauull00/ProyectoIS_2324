@@ -1,7 +1,7 @@
-PROYECTO IS 2023/2024
+# PROYECTO IS 2023/2024
 
-Miembros:
+## Miembros:
 
-Raúl Maraver Pérez (i82maper@uco.es)
-Carlos Ruiz Hidalgo (i22ruhic@uco.es)
-Manuel Eddy Ruiz Rivera (i12rurim@uco.es)
+##### Raúl Maraver Pérez (i82maper@uco.es)
+##### Carlos Ruiz Hidalgo (i22ruhic@uco.es)
+##### Manuel Eddy Ruiz Rivera (i12rurim@uco.es)
