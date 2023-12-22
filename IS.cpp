@@ -100,7 +100,7 @@ void menu_inicio_sesion(){
 			std::cin >> nombre;
 
 			while(existe_id(id)){
-				std::cout << "Introduzca su id\n" << std::endl;
+				std::cout << "| Introduzca su id: ";
 				std::cin >> id;
 				std::cin.ignore();
 				if(existe_id(id)){
@@ -113,17 +113,18 @@ void menu_inicio_sesion(){
         		std::cout << "| Introduzca su email: ";
         		std::getline(std::cin, email);
         		if (!std::regex_match(email, formato)) {
-            	std::cout << "Correo electrónico no válido" << std::endl;
+            	std::cout << "Correo electronico no valido" << std::endl;
             	std::cout << "Debe seguir el formato <CadenaCaracteres@uco.es>" << std::endl;
         		}
     		} while (!std::regex_match(email, formato));
 
-			std::cout << "Introduzca su contrasena\n" << std::endl;
+			std::cout << "| Introduzca su contrasena: ";
 			std::getline(std::cin, contrasena);
 
 			crear_usuario(nombre, id, email, contrasena, 5);
 
 			priv = inicio_sesion(email, contrasena);
+			std::cout << "|=========USUARIO REGISTRADO CON EXITO========|\n\n\n";
 			menu_usuario();
 		break;
 	}
@@ -211,6 +212,7 @@ void menu_usuario(){
 		std::cout << "| 2. Visualizar actividades                             |\n";
 		std::cout << "| 0. Salir del programa                                 |\n";
 		std::cout << "|=======================================================|\n";
+	std::cout << "Opcion: ";
 	std::cin >> opc;
 	std::cin.ignore(1000, '\n');
 	limpiarPantalla();
@@ -274,12 +276,13 @@ void inscripcion(){
 
 		case 1:
 			std::string actividad;
-			std::cout << "|===========================================================|\n";
-						std::cout << "| Escriba el nombre de alguno de las siguientes actividades |\n\n";
+			std::cout << "|================== LISTADO DE ACTIVIDADES DISPONIBLES ==============|\n";
 			get_lista_actividades();
+			std::cout << "|====================================================================|\n\n";
+			std::cout << "| Escriba el nombre de la actividad a la que se quiere preinscribir: ";
 			std::getline(std::cin, actividad);
 			if(!existe_actividad(actividad)){
-				std::cout << "La actividad introducido no existe";
+				std::cout << "La actividad introducida no existe";
 				exit(EXIT_FAILURE);
 			}
 
@@ -291,7 +294,7 @@ void inscripcion(){
 			std::string contrasena;
 
 			std::ifstream lista("data/Inicio_sesion.txt");
-
+			limpiarPantalla();
 			while(!lista.eof()){
 				getline(lista, nombre);
 				getline(lista, id);
@@ -301,9 +304,9 @@ void inscripcion(){
 				id1 = stoi(id);
 				if(idg == id1){
 					inscribir_alumno(actividad, nombre, id1, email, contrasena, 5);
-					std::cout << "\n|===================================================|\n";
-										std::cout << "| Se ha preinscrito con exito al curso seleccionado |\n";
-										std::cout << "|===================================================|\n";
+					std::cout << "\n|=======================================================|\n";
+					std::cout << "| Se ha preinscrito con exito a la actividad seleccionada |\n";
+					std::cout << "|=========================================================|\n";
 					lista.close();
 					exit(EXIT_SUCCESS);
 				}
@@ -362,13 +365,14 @@ void visualizar(){
 	C = cargar_actividades();
 
 	std::cout << "|===============================================================|\n";
-		std::cout << "|ACTIVIDADES :                                                  |\n";
-		get_lista_actividades();
-		std::cout << "|===============================================================|\n";
-		std::cout << "| 1. Visualizar la descripcion de una actividad                 |\n";
-		std::cout << "| 0. Salir                                                      |\n";
-		std::cout << "|===============================================================|\n";
-
+	std::cout << "|ACTIVIDADES :                                                  |\n";
+	get_lista_actividades();
+	std::cout << "\n|===============================================================|\n";
+	std::cout << "| Por favor, seleccione el numero de la opcion deseada:         |\n";
+	std::cout << "| 1. Visualizar la descripcion de una actividad                 |\n";
+	std::cout << "| 0. Salir                                                      |\n";
+	std::cout << "|===============================================================|\n";
+	std::cout << "\nOpcion: ";
 	std::cin >> opc;
 	std::cin.ignore(1000, '\n');
 	switch(opc){
@@ -378,19 +382,24 @@ void visualizar(){
 		break;
 
 		case 1:
-			std::cout << "Escriba el nombre de la actividad del que desea visualizar la descripcion\n";
+			std::cout << "Escriba el nombre de la actividad del que desea visualizar la descripcion: \n";
 			std::getline(std::cin, actividad);
 			if(!existe_actividad(actividad)){
 				std::cout << "La actividad introducida no existe\n";
 				exit(EXIT_FAILURE);
 			}
-			for (auto it1 = C.begin(); it1 != C.end(); it1++){
-				if ((*it1).get_nombre()== actividad){
-					std::cout << (*it1).get_descripcion() << std::endl;
-					std::cout << (*it1).get_aforo() << std::endl;
-				}
+			limpiarPantalla();
+			std::cout << "|===============================================================|\n";
+			std::cout << "|================= DETALLES DE LA ACTIVIDAD ====================|\n";
+			std::cout << "|===============================================================|\n";
+			for (auto it1 = C.begin(); it1 != C.end(); it1++) {
+    			if ((*it1).get_nombre() == actividad) {
+        			std::cout << "|Nombre de la actividad: " << (*it1).get_nombre() << std::endl;
+        			std::cout << "|Descripcion: " << (*it1).get_descripcion() << std::endl;
+        			std::cout << "|Aforo: " << (*it1).get_aforo() << std::endl;
+    			}
 			}
-			std::cout << "\n";
+			std::cout << "\n\n";
 		break;
 
 	}
@@ -402,11 +411,11 @@ void asignarDirector(){
 			std::string email;
 			std::string contrasena;
 
-			std::cout << "Introduzca el nombre\n" << std::endl;
+			std::cout << "Introduzca el nombre: ";
 			std::cin >> nombre;
 
 			while(existe_id(id)){
-				std::cout << "Introduzca su id\n" << std::endl;
+				std::cout << "Introduzca su id: ";
 				std::cin >> id;
 				std::cin.ignore();
 				if(existe_id(id)){
@@ -414,15 +423,22 @@ void asignarDirector(){
 				}
 			}
 
-			std::cout << "Introduzca el email\n" << std::endl;
-			std::getline(std::cin, email);
+			std::regex formato("^\\w+@uco\\.es$");
+			do {
+        		std::cout << "Introduzca su email: ";
+        		std::getline(std::cin, email);
+        		if (!std::regex_match(email, formato)) {
+            	std::cout << "Correo electronico no valido" << std::endl;
+            	std::cout << "Debe seguir el formato <CadenaCaracteres@uco.es>" << std::endl;
+        		}
+    		} while (!std::regex_match(email, formato));
 
-			std::cout << "Introduzca la contrasena\n" << std::endl;
+			std::cout << "Introduzca la contrasena: ";
 			std::getline(std::cin, contrasena);
 
 			crear_usuario(nombre, id, email, contrasena, 3);
-			std::cout<<"Se ha creado correctamente\n";
-			menu_director();
+			std::cout << "|======= DIRECTOR ACADEMICO REGISTRADO CON EXITO ======|\n\n\n";
+			exit(EXIT_SUCCESS);
 }
 
 void limpiarPantalla() {

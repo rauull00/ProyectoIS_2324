@@ -19,7 +19,7 @@ private:
     int idc_;
     std::string nombre_actividad_;
     std::string descripcion_actividad_;
-    int aforo_; // Nueva variable
+    int aforo_; 
 
 public:
     Actividad(int idc, std::string nombre_actividad, std::string descripcion_actividad, int aforo);
@@ -29,8 +29,8 @@ public:
     inline void set_nombre(std::string nombre) { nombre_actividad_ = nombre; }
     inline std::string get_descripcion() { return descripcion_actividad_; }
     inline void set_description(std::string descripcion) { descripcion_actividad_ = descripcion; }
-    inline int get_aforo() { return aforo_; } // Nuevo método
-    inline void set_aforo(int aforo) { aforo_ = aforo; } // Nuevo método
+    inline int get_aforo() { return aforo_; } 
+    inline void set_aforo(int aforo) { aforo_ = aforo; } 
 
     bool set_descripcion();
 
@@ -55,7 +55,7 @@ void get_lista_actividades() {
         std::cout << '\n';
         getline(lista, linea); // Linea del id del actividad
         getline(lista, linea); // Linea de la descripcion
-        getline(lista, linea); // Nueva línea para el aforo
+        getline(lista, linea); // Linea para el aforo
     }
 
     lista.close();
@@ -68,7 +68,7 @@ void add_actividad() {
     std::string nombre;
     std::string descripcion;
     int idc;
-    int aforo; // Nueva variable
+    int aforo; 
 
     std::cout << "Introduzca el nombre de la actividad\n";
     std::getline(std::cin, nombre);
@@ -123,6 +123,15 @@ void delete_actividad(){
 	remove("data/Lista_actividades.txt");
 	rename("data/Lista_actividades_aux.txt", "data/Lista_actividades.txt");
 
+}
+void limpiarPantalla2() {
+    // Función para limpiar la pantalla en sistemas Windows
+    #ifdef _WIN32
+        system("cls");
+    #else
+    // Función para limpiar la pantalla en sistemas Unix/Linux
+        system("clear");
+    #endif
 }
 
 bool set_descripcion(){

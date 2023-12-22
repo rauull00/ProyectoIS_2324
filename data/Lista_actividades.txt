@@ -1,20 +1,16 @@
 Congreso: Encuentro Multidisciplinario
 1
 Reunion donde expertos de diversas áreas comparten conocimientos e investigaciones.
-14
+10
 Ponencias: Presentación de Investigación
 2
 Exposicion oral de resultados de investigación con oportunidad de preguntas.
-15
+14
 Seminario: Charla Académica Interactiva
 3
 Encuentro educativo interactivo centrado en el diálogo sobre un tema específico.
-16
+15
 Taller: Sesión de Trabajo Colaborativo
 4
 Actividad práctica y participativa para aprender habilidades mediante colaboración.
-17
-prueba
-22
-prubea deeda
-10
+20

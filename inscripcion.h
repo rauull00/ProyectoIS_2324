@@ -71,10 +71,13 @@ void get_lista_users(){
 
 	std::string nombre;
 
-	std::cout << "Introduzca el nombre de la actividad" << std::endl;
+	std::cout << "============= ACTIVIDADES =============" << std::endl;
 	get_lista_actividades();
 	std::cout << '\n';
+	std::cout << "Escriba el nombre de la actividad para listar a los preinscritos: \n";
 	std::getline(std::cin, nombre);
+	limpiarPantalla2();
+	std::cout << "=LISTADO=" << std::endl;
 	if(!existe_actividad(nombre)){
 		std::cout << "La actividad introducida no existe";
 	exit(EXIT_FAILURE);
